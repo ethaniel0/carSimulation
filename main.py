@@ -16,17 +16,20 @@ class Car:
     self.secondsThrough = 0
     self.atEnd = False
     self.arrived = False
+    
   def update(self): # not completed, finish this
+    # if the car isn't at the end of a street
     if not self.atEnd:
       self.secondsThrough += 1
       if (self.secondsThrough == self.onStreet.timeTraveled):
         self.atEnd = True
-    else:
-      if (self.onStreet.light):
-        self.streetNum += 1
-        if (self.streetNum == len(self.streetPath)): self.done = True
-        else:
-          self.onStreet = 
+    # if the car is at the end of the street
+    elif self.onStreet.light:
+      # if the light is green, go forwards to the next street
+      self.streetNum += 1
+      if (self.streetNum == len(self.streetPath)): self.done = True
+      else:
+        self.onStreet = self.streetPath[self.streetNum]
 
     # how do we check the street
     
@@ -75,6 +78,8 @@ for i in range(int(num_cars)):
     
   cars.append(lenSeconds, my_streets)
 
+intersecitonPlan = []
+
 for timeStep in range(duration):
   # update cars
   for car in cars:
@@ -88,8 +93,12 @@ for timeStep in range(duration):
 
   for intersection in intWithCars:
     if len(intersection.waitingCars) == 1:
+      car = intersection.waitingCars[0]
+      intersection.append(car.onStreet, timeStep)
+      #timestep recorded so we can find out how long it turns green until the next light turns green. 
+      intersecitonPlan.append(intersection)
+    else:
       
-  
 
 
 

@@ -15,7 +15,6 @@ for i in range(num_intersections):
 for i in range(num_streets):
   dat = lines[i+1].split()
   try:
-    intersections[int(dat[0])].append(dat[2])
     intersections[int(dat[1])].append(dat[2])
   except:
     break
@@ -23,7 +22,8 @@ for i in range(num_streets):
 file = open('outb.txt', 'w')
 print(num_intersections, file=file)
 for i in range(num_intersections):
-  print(i,file=file);
-  print(len(intersections[i]),file=file)
-  for k in intersections[i]:
-    print(k,duration,file=file)
+  if len(intersections[i]) > 0:
+    print(i,file=file);
+    print(len(intersections[i]),file=file)
+    for k in intersections[i]:
+      print(k,duration,file=file)
