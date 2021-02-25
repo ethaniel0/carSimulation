@@ -30,6 +30,8 @@ class Car:
       if (self.streetNum == len(self.streetPath)): self.done = True
       else:
         self.onStreet = self.streetPath[self.streetNum]
+        self.atEnd = False
+        secondsThrough = 0
 
     # how do we check the street
     
@@ -83,6 +85,7 @@ intersecitonPlan = []
 for timeStep in range(duration):
   # update cars
   for car in cars:
+    ...
     if not car.atEnd:
       car.update()
       if car.onStreet.timeTraveled == car.secondsThrough:
